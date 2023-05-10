@@ -16,4 +16,15 @@ caracteres <- unlist(strsplit(texto, ""))
 frecuencias <- table(caracteres)
 frecuencias
 ```
+```{r}
+library(stringr)
+nosotros <- read.table("data/Nosotros.tsv", sep = '\t', header = TRUE, fill = TRUE)
+nosotros$FechaNac.DD.MM.YYY. <- str_replace_all(nosotros$FechaNac.DD.MM.YYY.,"-","/")
+nosotros$FechaNac.DD.MM.YYY.
+nosotros$FechaNac.DD.MM.YYY. <- as.Date(nosotros$FechaNac.DD.MM.YYY.,format="%d/%m/%Y")
+str(nosotros$FechaNac.DD.MM.YYY.)
+hoy <- as.Date("03/02/2021",format="%d/%m/%Y")
+años <- round(sum(hoy- nosotros$FechaNac.DD.MM.YYY.)/365,3)
+años
+```
 
